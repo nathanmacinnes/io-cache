@@ -13,22 +13,27 @@ if (cache.contains(filename)) {
     });
 }
 ````
-If you're using them, you should probably set up a helper to prevent such statements
-being littered all over the place.
+If you're using them, you should probably set up a helper to prevent such
+statements being littered all over the place.
 
-IOCache is your helper. Set up an IOCache with it's external resource from the start:
+IOCache is your helper. Set up an IOCache with it's external resource from the
+start:
 ````javascript
-var cachedFs = new IOCache(function (filename, callback) {
-    fs.readFile(filename, function (err, data) {
-        callback(data);
-    });
+var cachedFs = new IOCache(fs.readFile);
+````
+Then read the arguments from the first call every time:
+````javascript
+cachedFs.get(filename, function (err, contents) {
+    if (!err) {
+        callback(contents);
+    }
 });
-cachedFs.get(filename, callback);
 ````
 
 IOCache will sort out working out whether or not it's cached. It's always async,
 just so you know.
 
-To do
------
- * allow passing multiple arguments, so that setup is as simple as `cachedFs = new IOCache(fs.readFile);`
+TODO
+----
+ * Expire items in cache. Currently this can be done with
+`delete cachedFS.cache[filename]`, but there should be a better way.

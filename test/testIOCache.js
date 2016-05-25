@@ -93,6 +93,15 @@ describe('IOCache', function () {
         expect(cb.calls[cb.calls.length - 1].args).to.have.property(0, v);
       });
     });
+    it("passes all arguments from the external to the callback", function () {
+      keys.forEach(function (key, index) {
+        var args = random.n(random.string, random.natural({ max: 10 }));
+        cache.get(key, cb.mock);
+        mockExternal.calls[index].callback.apply(null, args);
+        nextTick();
+        expect(cb.calls[index].args).to.eql(args);
+      });
+    });
     describe("with only 1 argument", function () {
       it("expects the external function to only have a callback", function () {
         cache.get(cb.mock);
