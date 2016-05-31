@@ -3,7 +3,7 @@
   "version": "0.2.1",
   "description": "Cache external resources",
   "main": "lib/io-cache.js",
-  "repository": "",
+  "repository": "https://github.com/nathanmacinnes/io-cache",
   "author": "Nathan MacInnes",
   "devDependencies": {
     "chance": "^1.0.3",
