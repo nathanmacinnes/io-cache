@@ -9,7 +9,7 @@ if (cache.contains(filename)) {
 } else {
     fs.readFile(filename, function (err, contents) {
         cache.set(key, contents);
-        callback(contents);
+        callback(err, contents);
     });
 }
 ````
@@ -23,11 +23,7 @@ var cachedFs = new IOCache(fs.readFile);
 ````
 Then read the arguments from the first call every time:
 ````javascript
-cachedFs.get(filename, function (err, contents) {
-    if (!err) {
-        callback(contents);
-    }
-});
+cachedFs.get(filename, callback);
 ````
 
 IOCache will sort out working out whether or not it's cached. It's always async,
@@ -37,3 +33,7 @@ TODO
 ----
  * Expire items in cache. Currently this can be done with
 `delete cachedFS.cache[filename]`, but there should be a better way.
+ * Allow more advanced decision-making in use of the cache. So given the
+`fs.readFile` example, allow retrieving if `fs.stat` shows a change, and allow
+prevention of caching of file system errors. I haven't quite worked out an
+interface for this one.
