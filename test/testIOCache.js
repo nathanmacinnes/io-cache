@@ -85,12 +85,12 @@ describe('IOCache', function () {
       keys.forEach(function (key, index) {
         var v = {};
         cache.get(key, cb.mock);
-        mockExternal.calls[0].args[1](v);
+        mockExternal.calls[index].args[1](v);
         nextTick();
-        expect(cb.calls[cb.calls.length - 1].args).to.have.property(0, v);
+        expect(cb.calls[2 * index].args).to.have.property(0, v);
         cache.get(key, cb.mock);
         nextTick();
-        expect(cb.calls[cb.calls.length - 1].args).to.have.property(0, v);
+        expect(cb.calls[2 * index + 1].args).to.have.property(0, v);
       });
     });
     it("passes all arguments from the external to the callback", function () {
