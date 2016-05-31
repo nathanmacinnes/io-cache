@@ -1,6 +1,6 @@
 {
   "name": "io-cache",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Cache external resources",
   "main": "lib/io-cache.js",
   "repository": "",
