@@ -8,7 +8,7 @@ if (cache.contains(filename)) {
     callback(cache.get(filename));
 } else {
     fs.readFile(filename, function (err, contents) {
-        cache.set(key, contents);
+        cache.set(filename, contents);
         callback(err, contents);
     });
 }
