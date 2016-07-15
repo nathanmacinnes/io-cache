@@ -16,8 +16,8 @@ if (cache.contains(filename)) {
 If you're using them, you should probably set up a helper to prevent such
 statements being littered all over the place.
 
-IOCache is your helper. Set up an IOCache with it's external resource from the
-start:
+IOCache comes with a built-in helper. Set up an IOCache with it's external
+resource from the start:
 ````javascript
 var cachedFs = new IOCache(fs.readFile);
 ````
