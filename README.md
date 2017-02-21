@@ -37,3 +37,5 @@ TODO
 `fs.readFile` example, allow retrieving if `fs.stat` shows a change, and allow
 prevention of caching of file system errors. I haven't quite worked out an
 interface for this one.
+ * Allow caching to external resources (e.g., a user could cache from an
+ external server to a local database).
